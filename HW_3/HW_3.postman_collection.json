@@ -1,7 +1,7 @@
 {
 	"info": {
 		"_postman_id": "05e7d6b7-99bb-4cd8-8dfc-0c43511960e8",
-		"name": "HW_3",
+		"name": "Elena_HW_3",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
@@ -499,11 +499,9 @@
 							"var randomValue = values[parseInt(Math.random() * values.length)]\r",
 							"console.log(randomValue);\r",
 							"\r",
-							"//postman.setEnvironmentVariable(\"Cur_ID\", randomValue.Cur_ID);\r",
-							"pm.environment.set(\"Cur_ID\", randomValue.Cur_ID); \r",
 							"\r",
-							"\r",
-							""
+							"//В объекте возьмите Cur_ID и передать через окружение в следующий запрос.\r",
+							"pm.environment.set(\"Cur_ID\", randomValue.Cur_ID); "
 						],
 						"type": "text/javascript"
 					}
@@ -604,6 +602,59 @@
 					"raw": "{{url}}curr_byn",
 					"host": [
 						"{{url}}curr_byn"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "*** Task",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const arr = [];\r",
+							"\r",
+							"for (let i of pm.response.json()) {\r",
+							"pm.sendRequest({\r",
+							"    url: 'http://162.55.220.72:5005/curr_byn', method: 'POST', header: {\"Content-Type\": \"application/json\", \"Content-Type\":\"application/x-www-form-data\"},\r",
+							"    body: { mode: 'formdata', \"formdata\": [\r",
+							"    {key: \"auth_token\", value: pm.environment.get(\"auth_token\"), disabled:false},\r",
+							"    {key:\"curr_code\", value: (i.Cur_ID), disabled:false}, ]}}, \r",
+							"\r",
+							"function (err, response) {\r",
+							"    if (response.json().status != 200){\r",
+							"        arr.push(response.json().Cur_ID)};\r",
+							"            console.log('array =', arr);\r",
+							"            console.log('Currency rate =', response.json().Cur_OfficialRate);\r",
+							"        \r",
+							"}\r",
+							")\r",
+							"}\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "auth_token",
+							"value": "{{auth_token}}",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{url}}currency",
+					"host": [
+						"{{url}}currency"
 					]
 				}
 			},
