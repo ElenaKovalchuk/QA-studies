@@ -1,3 +1,5 @@
+SQL HQ_1
+
 -- 1. Вывести все поля и все строки.
 select * 
 from students;
