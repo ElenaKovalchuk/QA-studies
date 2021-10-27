@@ -39,7 +39,7 @@ from students;
 --10. Вывести пользователей где в имени есть слово Анна
 select id, name
 from students
-where name='Анна';
+where name like '%Анна%';
 
 --11. Вывести пользователей где в имени в конце есть
 select id, name
