@@ -29,7 +29,7 @@ values (default, 2400);
 
 select * from salary;
 
---4) Создать таблицу employee_salary
+--5) Создать таблицу employee_salary
 --- id. Serial  primary key,
 --- employee_id. Int, not null, unique
 --- salary_id. Int, not null
@@ -41,7 +41,7 @@ create table  employee_salary (
 ); 
 
 
---5) Наполнить таблицу employee_salary 40 строками:
+--6) Наполнить таблицу employee_salary 40 строками:
 --- в 10 строк из 40 вставить несуществующие employee_id
 
 insert into employee_salary (id, employee_id, salary_id)
@@ -73,7 +73,7 @@ values (default, 'Senior Automation QA engineer');
 select * from roles;
 
 
---11) Создать таблицу roles_employee
+--10) Создать таблицу roles_employee
 --- id. Serial  primary key,
 --- employee_id. Int, not null, unique (внешний ключ для таблицы employees, поле id)
 --- role_id. Int, not null (внешний ключ для таблицы roles, поле id)
