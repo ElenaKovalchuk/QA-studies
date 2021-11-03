@@ -251,19 +251,18 @@ where role_name like '%QA% engineer'
 group by role_name
 order by max(monthly_salary);
   
-  --25. Вывести количество QA инженеров.
-select count(role_name) as qa_engineers_number, role_name from roles 
-inner join roles_employee 
-on roles_employee.employee_id = roles.id 
-inner join employees
+  -- 25. Вывести количество QA инженеров.
+select count(role_name) as qa_engineers_number from roles 
+join roles_employee 
+on roles.id = roles_employee.role_id
+join employees
 on roles_employee.employee_id = employees.id 
-where role_name like '%QA% engineer'
-group by role_name;
+where role_name like '%QA%';
 
 -- 26. Вывести количество Middle специалистов.
 select count(role_name) as middle_number, role_name from roles 
 inner join roles_employee 
-on roles_employee.employee_id = roles.id 
+on roles.id = roles_employee.role_id 
 inner join employees
 on roles_employee.employee_id = employees.id 
 where role_name like '%Middle%'
