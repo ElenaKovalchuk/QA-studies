@@ -303,18 +303,19 @@ on employee_salary.employee_id = employees.id
 join salary 
 on  employee_salary.salary_id = salary.id 
 where role_name like '%developer%';
-    
-     
+      
 -- 29. Вывести имена, должности и ЗП всех специалистов по возрастанию.  
-select e.employee_name, r.role_name, s.monthly_salary 
-from employees e 
-full join roles_employee re on e.id = re.employee_id 
-full join roles r on re.role_id = r.id 
-full join employee_salary es on e.id =es.employee_id 
-full join salary s on es.salary_id = s.id
-where e.employee_name notnull 
-order by s.monthly_salary;
-
+select employee_name, role_name, monthly_salary
+from employees 
+join roles_employee 
+on roles_employee.employee_id = employees.id 
+join roles 
+on roles.id = roles_employee.role_id 
+join employee_salary 
+on employee_salary.employee_id = employees.id
+join salary 
+on  employee_salary.salary_id = salary.id 
+order by monthly_salary;
 
 -- 30. Вывести имена, должности и ЗП всех специалистов по возрастанию у специалистов у которых ЗП от 1700 до 2300.
 select employee_name, role_name, monthly_salary
