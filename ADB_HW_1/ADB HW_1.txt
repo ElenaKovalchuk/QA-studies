@@ -13,11 +13,7 @@
 
  4. Сделать скриншот запущенного приложения todolist и сразу скопировать на компьютер в одной команде.
 
-	adb shell screencap /storage/emulated/0/DCIM/123.png
-
-#вытаскиваем screenshot с телефона на компьютер
-
-	adb pull /storage/emulated/0/DCIM/123.png D:\Android\001_ToDoList-master\001_ToDoList-master\app\build\outputs\apk\debug 
+	adb shell screencap /storage/emulated/0/DCIM/123.png |  pull /storage/emulated/0/DCIM/123.png D:\Android\001_ToDoList-master\001_ToDoList-master\app\build\outputs\apk\debug 
 
  5. Вывести в консоль логи приложения todolist 
 
